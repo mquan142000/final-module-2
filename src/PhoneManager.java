@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PhoneManager {
-    private static List<Phone> phones = new ArrayList<>();
+    private static final List<Phone> phones = new ArrayList<>();
     private static final String FILE_PATH = "/Users/minhquan/Documents/final-module-2/src/mobiles.csv";
     Scanner scanner = new Scanner(System.in);
 
@@ -59,11 +59,22 @@ public class PhoneManager {
             System.out.print("Enter price: ");
             double price = scanner.nextDouble();
             scanner.nextLine();
+
             System.out.print("Enter quantity: ");
             int quantity = scanner.nextInt();
             scanner.nextLine();
+
             System.out.print("Enter producer: ");
             String producer = scanner.nextLine();
+            Utils.Validator validator = new Utils.Validator();
+            if (!validator.validatePrice(price)) {
+                System.out.println("Error: Price must be greater than 0.");
+                return;
+            }
+            if (!validator.validateQuantity(quantity)) {
+                System.out.println("Error: Quantity must be greater than 0.");
+                return;
+            }
 
             System.out.println("Phone type (1 - Genuine Phone, 2 - Regular Phone): ");
             int choice = scanner.nextInt();
@@ -99,7 +110,7 @@ public class PhoneManager {
         try {
             System.out.println("Enter the id to delete: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine();
 
             boolean found = false;
             Iterator<Phone> iterator = phones.iterator();
