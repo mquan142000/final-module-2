@@ -67,7 +67,7 @@ public class PhoneManager {
 
             System.out.println("Phone type (1 - Genuine Phone, 2 - Regular Phone): ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine();
 
             if (choice == 1) {
                 System.out.print("Enter warranty period: ");
@@ -85,6 +85,8 @@ public class PhoneManager {
 
                 CellPhone cellPhone = new CellPhone(phones.size() + 1, phoneName, price, quantity, producer, portableCountry, status);
                 phones.add(cellPhone);
+                saveRecordsToFile(); 
+
             }
             System.out.println("Phone added successfully!");
         } catch (Exception e) {

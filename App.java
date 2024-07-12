@@ -32,7 +32,7 @@ public class App {
                     phoneManager.displayPhone();
                     break;
                 case 4:
-                    phoneManager.searchPhone();
+                   // phoneManager.searchPhone();
                     break;
                 case 0:
                     System.out.println("Bạn đã thoát chương trình!");
