@@ -56,5 +56,6 @@ public class Phone {
     }
 
     public void display() {
+        System.out.printf("%-5d %-20s %-10.2f %-5d %-20s%n", id, phoneName, price, quantity, producer);
     }
 }

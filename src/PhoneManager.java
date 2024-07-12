@@ -77,6 +77,7 @@ public class PhoneManager {
 
                 GenuinePhone genuinePhone = new GenuinePhone(phones.size() + 1, phoneName, price, quantity, producer, warrantyPeriod, warrantyScope);
                 phones.add(genuinePhone);
+                saveRecordsToFile();
             } else {
                 System.out.println("Enter portable country: ");
                 String portableCountry = scanner.nextLine();
@@ -85,7 +86,7 @@ public class PhoneManager {
 
                 CellPhone cellPhone = new CellPhone(phones.size() + 1, phoneName, price, quantity, producer, portableCountry, status);
                 phones.add(cellPhone);
-                saveRecordsToFile(); 
+                saveRecordsToFile();
 
             }
             System.out.println("Phone added successfully!");
@@ -128,10 +129,25 @@ public class PhoneManager {
 
 
     public void displayPhone() {
+        System.out.printf("%-5s %-20s %-10s %-5s %-20s%n", "ID", "Phone Name", "Price", "Quantity", "Producer");
         for (Phone phone : phones) {
             phone.display();
+
         }
     }
+
+    public void searchPhone() {
+        System.out.print("Nhập tìm kiếm: ");
+        Scanner scanner = new Scanner(System.in);
+        int id = Integer.parseInt(scanner.nextLine());
+        for (Phone phone : phones) {
+            if (phone.getId() == id) {
+                phone.display();
+                return;
+            }
+        }
+    }
+
 
     public static void saveRecordsToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -149,4 +165,9 @@ public class PhoneManager {
             e.printStackTrace();
         }
     }
+
 }
+
+
+
+
